@@ -1,0 +1,325 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  
+  <title>某次强制关机后引发的血案 | m0nshaw&#39;s blog</title>
+  <meta name="author" content="sung3r">
+  
+  <meta name="description" content="记录Mac环境配置过程">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="某次强制关机后引发的血案"/>
+  <meta property="og:site_name" content="m0nshaw&#39;s blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/responsive.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">m0nshaw&#39;s blog</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/categories" title="All the categories.">
+			  <i class="fa fa-folder"></i>Categories
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/tags" title="All the tags.">
+			  <i class="fa fa-tags"></i>Tags
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/atom.xml" title="Subscribe me.">
+			  <i class="fa fa-user"></i>RSS
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">
+			<h1> 某次强制关机后引发的血案</h1>
+		</div>
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div id="top_meta"></div>
+	<div class="col-md-9">
+	
+
+	<!-- content -->
+	<div class="mypage">		
+	  
+		 <div class="alert alert-success description">
+			<i class="fa fa-info-circle"></i> 记录Mac环境配置过程
+		 </div> <!-- alert -->
+	  		
+
+	  <h1 id="强制重启后无限菊花"><a href="#强制重启后无限菊花" class="headerlink" title="强制重启后无限菊花"></a>强制重启后无限菊花</h1><p>前两天将mac关闭，等半天没关上，索性直接强制重启了，等再开机的时候。。。奔溃了，一致卡在开机进度条。</p>
+<p>后来基本上能尝试的方法都尝试了。。。大致这几种<br>1.开机按住<code>command + R</code>键，进入macOS恢复界面，打开终端</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#进入缓存目录</span><br><span class="line">$ cd &#x2F;Volumes&#x2F;Macintosh&#x2F;var&#x2F;db&#x2F;caches&#x2F;opendirectory&#x2F;</span><br><span class="line">#删除缓存数据库</span><br><span class="line">$ mv .&#x2F;mbr_cache .&#x2F;mar_cache-old</span><br></pre></td></tr></table></figure>
+<p>不行。。。<br>2.重置PRAM：开机按住<code>Control+Command</code>并保持3秒，试了不行<br>3.重置NVRem：开机按住<code>Option+Command+R+P</code>并保持30秒，也不行<br>4.开机<code>Command+S</code>，出现命令行提示符后输入以下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mount -uw &#x2F; </span><br><span class="line">mv &#x2F;var&#x2F;db&#x2F;.AppleSetupDone &#x2F;var&#x2F;db&#x2F;.AppleSetupDone-old</span><br><span class="line">reboot</span><br></pre></td></tr></table></figure>
+<p>依旧不行<br>5.开机按住<code>shift</code>，貌似安全模式，进去有safari能联网查资料，没用。。。<br>6.开机按住<code>D</code>，硬件自检，没检测到啥错误。。<br>7.开机按住<code>command + R</code>键，进入磁盘工具，急救，磁盘检测正常，没桃子用。。。<br>8.没法开机可以先试试这个方法<a href="https://support.apple.com/zh-cn/HT201295" target="_blank" rel="noopener">如何重置Mac的SMC</a></p>
+<p>想起以前问过客服，没开启磁盘加密的情况下是能直接覆盖安装系统的，不需要抹除，数据不会丢失。就这样傻傻的花了一个多小时安装系统，重启过后，还是一样的情况。。。醉了，这办法也不灵了</p>
+<p>没办法，直接抹除重装，先进恢复模式把重要资料搞出来，毕竟数据无价。在<code>磁盘工具-&gt;文件-&gt;新建映像-&gt;来自文件夹的映像...</code>选中需要保存的文件夹，后缀填dmg，存储到U盘或移动硬盘上。</p>
+<p>一个多小时后。。。终于装好了，但所有的环境都丢失了。。。</p>
+<h1 id="部分有用的工具资源"><a href="#部分有用的工具资源" class="headerlink" title="部分有用的工具资源"></a>部分有用的工具资源</h1><p>后面用到的软件可以从以下网站下载，安全性自测，不保证没有后门<br><a href="https://www.digit77.com/" target="_blank" rel="noopener">https://www.digit77.com/</a><br><a href="https://xclient.info/" target="_blank" rel="noopener">https://xclient.info/</a><br><a href="https://www.macdo.cn/" target="_blank" rel="noopener">https://www.macdo.cn/</a><br><a href="https://macwk.com/" target="_blank" rel="noopener">https://macwk.com/</a><br><a href="https://www.renfei.net/posts" target="_blank" rel="noopener">https://www.renfei.net/posts</a><br><a href="https://macstore.info/" target="_blank" rel="noopener">https://macstore.info/</a></p>
+<p>1.Google Chrome – 不多说直接下载最新版，方便同步书签查资料。<br>2.Qv2ray – 跨平台v2ray客户端，科学上网<br>3.Shadowsocks-NG R8 – mac最好用的ss客户端，科学上网<br>4.Proxifier – 给终端或者应用开代理，神器<br>5.Gitnote – 最好用的跨平台笔记本工具，gitee做md仓库、github做图床<br>6.NeatDownloadManager – mac平台的IDM，多线程下载工具，貌似也支持win<br>7.NoMachine – TeamView的替代工具，管理远程Linux主机<br>8.Junp Desktop – TeamView的替代工具，管理远程Windows主机<br>9.Docker Desktop – 配合ancypwn食用更佳😌<br>10.Archiver – 简单易用的解压工具<br>另外还有某盘、某Q，用来下载、传资料。</p>
+<h1 id="几个基本操作"><a href="#几个基本操作" class="headerlink" title="几个基本操作"></a>几个基本操作</h1><h2 id="显示隐藏文件"><a href="#显示隐藏文件" class="headerlink" title="显示隐藏文件"></a>显示隐藏文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool true</span><br><span class="line">KillAll Finder</span><br><span class="line">#重新隐藏</span><br><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool false</span><br><span class="line">KillAll Finder</span><br></pre></td></tr></table></figure>
+
+<h2 id="Mac应用”已损坏，打不开"><a href="#Mac应用”已损坏，打不开" class="headerlink" title="Mac应用”已损坏，打不开"></a>Mac应用”已损坏，打不开</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo spctl --master-disable</span><br></pre></td></tr></table></figure>
+<p>系统偏好设置-&gt;安全性与隐私-&gt;通用，选中<code>任何来源</code>选项<br><img src="https://raw.githubusercontent.com/sung3r/gitnote-images/main/gitnote-images/2021/01/31/1612064278876-1612064278903.png" alt="title"></p>
+<p>如果还不行，在终端粘贴复制输入命令：<code>sudo xattr -r -d com.apple.quarantine</code>（注意最后有一个空格），打开 “访达”（Finder）进入 “应用程序” 目录，找到该软件图标，将图标拖到刚才的终端窗口里面会得到类似命令：<code>sudo xattr -r -d com.apple.quarantine /Applications/Downie\ 3.app</code>，回到终端窗口按回车。</p>
+<h2 id="强制退出应用"><a href="#强制退出应用" class="headerlink" title="强制退出应用"></a>强制退出应用</h2><p>例如Finder<br>窗口左上角的苹果标志-&gt;强制退出-&gt;Finder-&gt;重新启动<br><img src="https://raw.githubusercontent.com/sung3r/gitnote-images/main/gitnote-images/2021/01/31/1612064305176-1612064305177.png" alt="title"></p>
+<h2 id="pip设置国内源"><a href="#pip设置国内源" class="headerlink" title="pip设置国内源"></a>pip设置国内源</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~&#x2F;.pip &amp;&amp; cd ~&#x2F;.pip</span><br><span class="line">nano pip.conf</span><br></pre></td></tr></table></figure>
+
+<p>添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">index-url&#x3D;http:&#x2F;&#x2F;mirrors.aliyun.com&#x2F;pypi&#x2F;simple&#x2F;</span><br><span class="line">[install]</span><br><span class="line">trusted-host&#x3D;mirrors.aliyun.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="打开软件提示“意外退出”、“应该移到废纸篓”等"><a href="#打开软件提示“意外退出”、“应该移到废纸篓”等" class="headerlink" title="打开软件提示“意外退出”、“应该移到废纸篓”等"></a>打开软件提示“意外退出”、“应该移到废纸篓”等</h2><p>打开终端，执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">codesign --force --deep --sign - &#x2F;Applications&#x2F;Downie\ 3.app</span><br></pre></td></tr></table></figure>
+
+	  <div class="article-footer-copyright">
+
+    本博客采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议(CC BY-NC-SA 4.0) 发布.</a>
+</div>
+
+	</div>
+
+	
+	<span id="/2020/05/01/%E6%9F%90%E6%AC%A1%E5%BC%BA%E5%88%B6%E5%85%B3%E6%9C%BA%E5%90%8E%E5%BC%95%E5%8F%91%E7%9A%84%E8%A1%80%E6%A1%88/" class="leancloud-visitors view" data-flag-title="某次强制关机后引发的血案">
+		<em class="post-meta-item-text"> Page View </em> <i class="leancloud-visitors-count"></i>
+	</span>
+	
+	<div>
+  	<center>
+
+	<div class="pagination">
+
+    
+    
+    <a href="/2021/01/31/编译SerenityOS操作系统/" type="button" class="btn btn-default"><i
+                class="fa fa-arrow-circle-o-left"></i> Prev</a>
+    
+
+    <a href="/" type="button" class="btn btn-default"><i class="fa fa-home"></i>Home</a>
+    
+    <a href="/2020/02/17/DefConCTF-Qualifier-2018-IPwnKit解题思路/" type="button" class="btn btn-default ">Next<i
+                class="fa fa-arrow-circle-o-right"></i></a>
+    
+
+    
+</div>
+
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	<!--
+<section id="comment">
+    <h2 class="title">Comments</h2>
+
+    
+</section>
+
+-->
+	
+		<section id="comments" class="comments">
+			<style>
+			.comments{margin:30px;padding:10px;background:rgb(0, 0, 0)}
+			@media screen and (max-width:800px){.comments{margin:auto;padding:10px;background:#000}}
+			</style>
+			<div id="vcomment" class="comment"></div>
+<script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+<script src="https://cdnjs.loli.net/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+var valineConfig = {"enable":true,"appId":"xxx","appKey":"xxx","placeholder":"提交评论时留下邮箱收到回复后将自动通知","visitor":true,"avatar":"monsterid","requiredFields":["nick","mail"]}
+valineConfig.el='#vcomment';
+new Valine(valineConfig);
+    // new Valine({
+    //     el: '#vcomment',
+    //     appId: "",
+    //     appKey: "",
+    //     placeholder: "提交评论时留下邮箱收到回复后将自动通知",
+    //     avatar:"monsterid",
+    //     visitor: "true",
+    //     requiredFields: "nick,mail".split(','),
+    // });
+</script>
+
+		</section>
+	
+	</div> <!-- col-md-9/col-md-12 -->
+
+
+	
+	<div id="side_meta">
+		<div class="col-md-3" id="post_meta"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2020-05-01 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/Docs/">Docs<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/环境配置/">环境配置<span>2</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
+	   <div id="toc" class="toc collapse in">
+		   <span class="toc-title">Contents</span>
+			<ol class="toc-article"><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#强制重启后无限菊花"><span class="toc-article-text">强制重启后无限菊花</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#部分有用的工具资源"><span class="toc-article-text">部分有用的工具资源</span></a></li><li class="toc-article-item toc-article-level-1"><a class="toc-article-link" href="#几个基本操作"><span class="toc-article-text">几个基本操作</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#显示隐藏文件"><span class="toc-article-text">显示隐藏文件</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#Mac应用”已损坏，打不开"><span class="toc-article-text">Mac应用”已损坏，打不开</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#强制退出应用"><span class="toc-article-text">强制退出应用</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#pip设置国内源"><span class="toc-article-text">pip设置国内源</span></a></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#打开软件提示“意外退出”、“应该移到废纸篓”等"><span class="toc-article-text">打开软件提示“意外退出”、“应该移到废纸篓”等</span></a></li></ol></li></ol>
+		</div>
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+		
+
+	</div>
+	
+		
+
+</div><!-- row -->
+
+<!--
+ -->
+
+
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  
+  &copy; 2021 m0nshaw's blog
+  
+      powered by <a href="http://hexo.io/" target="_blank">Hexo</a>.Theme <a href="https://github.com/Ares-X/hexo-theme-freemind.bithack" target="_blank">freemind.bithack</a>  
+</p>
+ </footer>
+</div> <!-- container-narrow -->
+  
+
+
+  
+<a id="gotop" href="#">   
+  <span>⬆︎TOP</span>
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/search.js"></script> 
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+
+</body>
+   </html>
